@@ -5,8 +5,7 @@
 -- MAGIC Este notebook demonstra como implementar e utilizar Row Level Security (RLS) e Column Masking no Databricks Unity Catalog.
 -- MAGIC 
 -- MAGIC ## Documentação Oficial
--- MAGIC - [Row Level Security](https://docs.databricks.com/security/row-level-security/index.html)
--- MAGIC - [Column Masking](https://docs.databricks.com/security/column-masking/index.html)
+-- MAGIC - [Row Level Security & Column Masking](https://docs.databricks.com/aws/en/tables/row-and-column-filters)
 -- MAGIC
 -- MAGIC ## Cenário de Demonstração
 -- MAGIC Vamos criar um cenário prático onde:
