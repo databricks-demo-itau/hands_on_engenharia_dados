@@ -2,16 +2,30 @@
 -- MAGIC %md
 -- MAGIC # Demonstração de Row Level Security e Column Masking
 -- MAGIC
--- MAGIC Este notebook demonstra como usar Row Level Security (RLS) e Column Masking no Databricks.
--- MAGIC Vamos criar um cenário simples onde:
--- MAGIC 1. Usuários com acesso especial podem ver todos os dados (usando mapping table)
--- MAGIC 2. Informações sensíveis são mascaradas para usuários sem permissão (Column Masking)
+-- MAGIC Este notebook demonstra como implementar e utilizar Row Level Security (RLS) e Column Masking no Databricks Unity Catalog.
+-- MAGIC 
+-- MAGIC ## Documentação Oficial
+-- MAGIC - [Row Level Security](https://docs.databricks.com/security/row-level-security/index.html)
+-- MAGIC - [Column Masking](https://docs.databricks.com/security/column-masking/index.html)
+-- MAGIC
+-- MAGIC ## Cenário de Demonstração
+-- MAGIC Vamos criar um cenário prático onde:
+-- MAGIC 1. Implementamos controle de acesso baseado em departamentos usando Row Level Security
+-- MAGIC 2. Protegemos dados sensíveis (CPF e salário) usando Column Masking
+-- MAGIC 3. Criamos uma tabela de mapeamento para controlar usuários com acesso especial
+-- MAGIC
+-- MAGIC ### Regras de Acesso
+-- MAGIC - Usuários com acesso especial podem ver dados de seu próprio departamento
+-- MAGIC - CPF e salário são mascarados para usuários sem permissão específica
+-- MAGIC - Usuários do departamento Financeiro têm acesso especial aos dados sensíveis
 
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Configuração do Schema
+-- MAGIC ## 1. Configuração do Schema
+-- MAGIC 
 -- MAGIC Primeiro, vamos configurar o schema no Unity Catalog usando o nome do usuário.
+-- MAGIC Esta é uma prática recomendada para garantir isolamento de dados entre diferentes usuários.
 
 -- COMMAND ----------
 
@@ -33,8 +47,10 @@
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Configurar Catalog e Schema
--- MAGIC Vamos configurar o catalog e schema para uso no notebook.
+-- MAGIC ## 2. Configurar Catalog e Schema
+-- MAGIC 
+-- MAGIC Configuramos o catalog `dev_hands_on` e o schema específico do usuário para garantir
+-- MAGIC que todas as operações subsequentes sejam executadas no contexto correto.
 
 -- COMMAND ----------
 
@@ -45,8 +61,15 @@ USE SCHEMA IDENTIFIER(schema_name);
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Criar Tabela de Exemplo
--- MAGIC Vamos criar uma tabela Delta com dados de funcionários para demonstrar as funcionalidades.
+-- MAGIC ## 3. Criar Tabela de Exemplo
+-- MAGIC 
+-- MAGIC Vamos criar uma tabela Delta com dados de funcionários que será utilizada para
+-- MAGIC demonstrar as funcionalidades de RLS e Column Masking.
+-- MAGIC 
+-- MAGIC A tabela contém:
+-- MAGIC - Informações básicas (id, nome, departamento)
+-- MAGIC - Dados sensíveis (CPF, salário)
+-- MAGIC - Data de admissão
 
 -- COMMAND ----------
 
@@ -79,8 +102,12 @@ SELECT * FROM funcionarios;
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Criar Mapping Table
--- MAGIC Vamos criar uma tabela que contém os usuários com acesso especial.
+-- MAGIC ## 4. Criar Mapping Table
+-- MAGIC 
+-- MAGIC A tabela de mapeamento (`usuarios_acesso_especial`) é fundamental para o controle de acesso.
+-- MAGIC Ela define quais usuários têm permissões especiais e a quais departamentos eles têm acesso.
+-- MAGIC 
+-- MAGIC Esta tabela será utilizada tanto para o RLS quanto para o Column Masking.
 
 -- COMMAND ----------
 
@@ -105,8 +132,15 @@ SELECT * FROM usuarios_acesso_especial
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Implementar Row Level Security
--- MAGIC Agora vamos criar uma função UDF que verifica se o usuário está na mapping table.
+-- MAGIC ## 5. Implementar Row Level Security
+-- MAGIC 
+-- MAGIC O Row Level Security (RLS) é implementado através de uma função UDF que verifica se o usuário
+-- MAGIC está na tabela de mapeamento e tem acesso ao departamento específico.
+-- MAGIC 
+-- MAGIC A função `acesso_especial_filter`:
+-- MAGIC 1. Verifica se o usuário atual está na tabela de mapeamento
+-- MAGIC 2. Confirma se o usuário tem acesso ao departamento específico
+-- MAGIC 3. Retorna true apenas se ambas as condições forem atendidas
 
 -- COMMAND ----------
 
@@ -160,8 +194,18 @@ SELECT * FROM funcionarios;
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Implementar Column Masking
--- MAGIC Vamos criar funções UDF para as máscaras de colunas e aplicá-las à tabela.
+-- MAGIC ## 6. Implementar Column Masking
+-- MAGIC 
+-- MAGIC O Column Masking é implementado através de funções UDF específicas para cada coluna sensível.
+-- MAGIC 
+-- MAGIC Implementamos duas máscaras:
+-- MAGIC 1. `cpf_mask`: Mascara o CPF para todos os usuários, exceto para usuários do departamento Financeiro
+-- MAGIC 2. `salario_mask`: Mascara o salário para todos os usuários, exceto para usuários do departamento Financeiro
+-- MAGIC 
+-- MAGIC As funções de máscara consideram:
+-- MAGIC - O departamento do usuário
+-- MAGIC - Se o usuário está na tabela de mapeamento
+-- MAGIC - Se o CPF corresponde ao do usuário
 
 -- COMMAND ----------
 
@@ -201,8 +245,13 @@ ALTER TABLE funcionarios ALTER COLUMN salario SET MASK salario_mask USING COLUMN
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Testar as Políticas
--- MAGIC Vamos verificar como o usuário atual vê os dados.
+-- MAGIC ## 7. Testar as Políticas
+-- MAGIC 
+-- MAGIC Nesta seção, vamos verificar como as políticas de segurança afetam a visualização dos dados.
+-- MAGIC Você poderá observar:
+-- MAGIC - Apenas registros do seu departamento (devido ao RLS)
+-- MAGIC - CPFs e salários mascarados para usuários sem permissão
+-- MAGIC - Dados completos para usuários com acesso especial
 
 -- COMMAND ----------
 
@@ -213,8 +262,10 @@ SELECT * FROM funcionarios;
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Limpeza
--- MAGIC Por fim, vamos remover todos os assets criados.
+-- MAGIC ## 8. Limpeza
+-- MAGIC 
+-- MAGIC Por fim, realizamos a limpeza de todos os assets criados para evitar acúmulo de recursos.
+-- MAGIC Esta é uma prática importante para manter o ambiente organizado e otimizado.
 
 -- COMMAND ----------
 

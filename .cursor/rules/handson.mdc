@@ -3,48 +3,62 @@ description:
 globs: 
 alwaysApply: true
 ---
+---
+description: Regras e diretrizes para desenvolvimento de demos no Databricks
+globs: 
+alwaysApply: true
+---
 
-# Your rule content
+# Diretrizes Gerais
 
-- Comentarios no codigo e ou textos explicativos em markdown sempre devem ser em Portugues - BR
-- Voce é um agente que esta me ajudando a desenvolver alguns demos para Databricks
-- Voce ira trabalhar com notebooks, utilizar o tipo source descrito em: https://learn.microsoft.com/en-us/azure/databricks/notebooks/notebook-format
-- Todos os notebooks (Sempre que possivel) deve ser self contained.
-- Em qualquer codigo ou exemplo, sempre adicione comentarios explicativos para que leigos consigam acompanhar.
-- Sempre referencie as documentações oficiais e as documentações que já estão anexadas na propria IDE
-- Quando ja estiver com o catalog e o schema, adicionar uma celula com use catalog e use schema no padrao
+## Idioma e Documentação
+- Todos os comentários no código e textos explicativos em markdown devem ser em Português - BR
+- Sempre referencie as documentações oficiais e as documentações que já estão anexadas na própria IDE
+- Em qualquer código ou exemplo, sempre adicione comentários explicativos para que leigos consa do Notebook
+- Todos os notebooks devem ser self-contained quando possível
+- Utilize o tipo source conforme descrito em: https://learn.microsoft.com/en-us/azure/databricks/notebooks/notebook-format
+- Para referência de formato, consulte: [rls_column_masking_demo.sql](mdc:BONUS_row_level_security_column_masking/rls_column_masking_demo.sql)
 
+## Unity Catalog e Schema
+- Todos os assets devem ser criados no Unity Catalog no catálogo: `dev_hands_on`
+- O schema deve ser baseado no nome do usuário executante, com "." substituído por "_"
+- Exemplo de código para obter o nome do usuário formatado:
+```python
+user_name = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName()
+user_name = user_name.toString().split('@')[0].split('(')[1].replace('.', '_')
 ```
+
+## Configuração de Catalog e Schema
+Ao iniciar um notebook, adicione:
+```sql
 use catalog dev_hands_on;
 use schema IDENTIFIER(schema_name);
 ```
 
-- Todo e qualquer asset criado dentro do Databricks deve ser sempre no unity catalog, no catalogo: dev_hands_on e o schema deve ser um schema com o nome de usuario que está executando, sempre dando replace nos "." por "_" um exemplo de código pytho que funciona para pegar o nome de usuario, já formatado é o seguinte.
+## Limpeza de Assets
+- No final de cada notebook, todos os assets criados devem ser deletados (exceto o catálogo e o schema)
 
-```
-#Exemplo de codigo python para pegar o nome de usuario ja formatado
-user_name = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName()
-user_name = user_name.toString().split('@')[0].split('(')[1].replace('.', '_')
+# Diretrizes de Código
 
-```
+## Variáveis Python e SQL
+- Ao definir uma variável em Python para uso em SQL:
+  1. Crie a variável SQL primeiro
+  2. Use `spark.sql()` seguindo: https://docs.databricks.com/aws/en/sql/language-manual/sql-ref-syntax-aux-set-variable
 
-- No final de cada notebook, deletado os assets criados (menos o catalogo e o schema)
-
-
-- Quando definir uma variable em python e precisar utilizar em SQL, sempre sete o valor atraves do spark.sql() e seguindo https://docs.databricks.com/aws/en/sql/language-manual/sql-ref-syntax-aux-set-variable. Tambem é preciso criar a variavel SQL antes de setar o seu valor
-- REFERENCIANDO OBJETO COM VARIAVEL EM SQL : 
-```
+## Referenciando Objetos com Variáveis
+```sql
 select * from IDENTIFIER("dev_hands_on." || schema_name || ".funcionarios")
 ```
-- Para exemplos de row_filter, sempre use essa documentacão https://docs.databricks.com/aws/en/tables/row-and-column-filters
-- O comando SET ROW FILTER deve ter somente o nome do filtro, sem schema e catalogo
 
-````
+## Row Filters
+- Consulte a documentação: https://docs.databricks.com/aws/en/tables/row-and-column-filters
+- Sintaxe do comando SET ROW FILTER (sem schema e catálogo):
+```sql
 SET ROW FILTER ti_filter ON (departamento);
 ```
 
-- To apply the colum mask, this is the syntax
-```
+## Column Masking
+Sintaxe para aplicar máscara em coluna:
+```sql
 ALTER TABLE <table_name> ALTER COLUMN <col_name> SET MASK <mask_func_name> USING COLUMNS <additional_columns>;
 ```
-
