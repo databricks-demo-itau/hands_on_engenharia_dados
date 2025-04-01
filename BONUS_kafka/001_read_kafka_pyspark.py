@@ -1,5 +1,30 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC # Demonstração de Leitura de Dados do Kafka com PySpark
+# MAGIC
+# MAGIC Este notebook demonstra como implementar a leitura de dados do Apache Kafka 
+# MAGIC no Databricks usando PySpark, utilizando a arquitetura Medallion.
+# MAGIC
+# MAGIC ## Documentação Oficial
+# MAGIC - [Databricks Structured Streaming with Kafka](
+# MAGIC   https://docs.databricks.com/structured-streaming/kafka.html)
+# MAGIC - [AWS MSK IAM Authentication](
+# MAGIC   https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html)
+# MAGIC
+# MAGIC ## Cenário de Demonstração
+# MAGIC Vamos criar um cenário prático onde:
+# MAGIC 1. Lemos dados de clickstream em tempo real do Kafka
+# MAGIC 2. Implementamos a arquitetura Medallion (Bronze, Silver, Gold)
+# MAGIC 3. Aplicamos validações e transformações nos dados
+# MAGIC
+# MAGIC ### Arquitetura de Dados
+# MAGIC - **Bronze**: Dados brutos do Kafka
+# MAGIC - **Silver**: Dados validados e estruturados
+# MAGIC - **Gold**: Agregações e métricas de negócio
 
+# COMMAND ----------
+
+# DBTITLE 1,Imports
 import dlt
 from pyspark.sql.functions import from_json, col
 from pyspark.sql.types import (
@@ -9,10 +34,16 @@ from pyspark.sql.types import (
     TimestampType
 )
 from typing import Dict, Any
-from pyspark.sql import SparkSession
 
+# COMMAND ----------
 
-# Definição do schema dos dados do Kafka
+# MAGIC %md
+# MAGIC ## 1. Definição do Schema
+# MAGIC Definimos o schema dos dados que serão lidos do Kafka para garantir a tipagem correta.
+
+# COMMAND ----------
+
+# DBTITLE 1,Bronze Schema
 CLICKSTREAM_SCHEMA = StructType([
     StructField("SESSION_ID", StringType(), True),
     StructField("TIMESTAMP", TimestampType(), True),
@@ -27,36 +58,50 @@ CLICKSTREAM_SCHEMA = StructType([
     StructField("_rescued_data", StringType(), True)
 ])
 
+# COMMAND ----------
 
-def get_kafka_options() -> Dict[str, Any]:
-    """
-    Retorna as configurações de conexão com o Kafka.
-    
-    Returns:
-        Dict[str, Any]: Dicionário com as configurações do Kafka
-    """
-    callback_handler = (
-        "shadedmskiam.software.amazon.msk.auth.iam"
-        ".IAMClientCallbackHandler"
-    )
-    jaas_config = (
-        "shadedmskiam.software.amazon.msk.auth.iam"
-        ".IAMLoginModule required;"
-    )
-    
-    return {
-        "kafka.bootstrap.servers": "${bootstrapservers}",
-        "subscribe": "${topic}",
-        "kafka.sasl.mechanism": "AWS_MSK_IAM",
-        "kafka.sasl.jaas.config": jaas_config,
-        "kafka.security.protocol": "SASL_SSL",
-        "startingOffsets": "earliest",
-        "kafka.sasl.client.callback.handler.class": callback_handler
-    }
-
+# MAGIC %md
+# MAGIC ## 2. Configuração do Kafka
+# MAGIC Configuramos a conexão com o Kafka usando autenticação AWS MSK IAM.
 
 # COMMAND ----------
 
+# DBTITLE 1,Kafka Options & Autenticação
+def get_kafka_options(bootstrapservers: str, topic: str) -> Dict[str, Any]:
+    """
+    Retorna as configurações básicas de conexão com o Kafka usando AWS MSK IAM.
+    
+    Args:
+        bootstrapservers: Endereço dos servidores Kafka
+        topic: Nome do tópico Kafka
+        
+    Returns:
+        Dict[str, Any]: Configurações do Kafka
+    """
+    return {
+        "kafka.bootstrap.servers": bootstrapservers,
+        "subscribe": topic,
+        "kafka.sasl.mechanism": "AWS_MSK_IAM",
+        "kafka.sasl.jaas.config": (
+            "shadedmskiam.software.amazon.msk.auth.iam.IAMLoginModule required;"
+        ),
+        "kafka.security.protocol": "SASL_SSL",
+        "startingOffsets": "earliest",
+        "kafka.sasl.client.callback.handler.class": (
+            "shadedmskiam.software.amazon.msk.auth.iam.IAMClientCallbackHandler"
+        )
+    }
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## 3. Camada Bronze
+# MAGIC Na camada Bronze, realizamos a ingestão dos dados brutos do Kafka.
+# MAGIC Os dados são lidos em formato JSON e armazenados sem transformações.
+
+# COMMAND ----------
+
+# DBTITLE 1,Bronze
 @dlt.table(
     name="pyspark_clickstream_bronze",
     comment="Camada Bronze: Dados brutos do Kafka"
@@ -66,11 +111,16 @@ def clickstream_bronze():
     Lê os dados brutos do Kafka e armazena na camada Bronze.
     Os dados são mantidos em seu formato original, apenas com parse do JSON.
     """
-    spark = SparkSession.builder.getOrCreate()
+    bootstrapservers = spark.conf.get("bootstrapservers")
+    topic = spark.conf.get("topic")
+
     return (
         spark.readStream
         .format("kafka")
-        .options(**get_kafka_options())
+        .options(**get_kafka_options(
+            bootstrapservers=bootstrapservers, 
+            topic=topic
+        ))
         .load()
         .select(
             from_json(col("value").cast("string"), CLICKSTREAM_SCHEMA)
@@ -79,9 +129,18 @@ def clickstream_bronze():
         .select("kafka_value.*")
     )
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## 4. Camada Silver
+# MAGIC Na camada Silver, aplicamos validações e estruturação nos dados:
+# MAGIC - Validamos campos obrigatórios
+# MAGIC - Removemos registros inválidos
+# MAGIC - Estruturamos os dados em colunas tipadas
 
 # COMMAND ----------
 
+# DBTITLE 1,Silver com Expectations
 @dlt.table(
     name="pyspark_clickstream_silver",
     comment="Camada Silver: Dados validados e estruturados",
@@ -108,10 +167,19 @@ def clickstream_silver():
     """
     return dlt.read_stream("pyspark_clickstream_bronze")
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## 5. Camada Gold
+# MAGIC Na camada Gold, criamos views materializadas com métricas de negócio:
+# MAGIC - Total de clicks por sistema operacional
+# MAGIC - Total de clicks por tipo de dispositivo
+# MAGIC - Total de clicks por cidade
 
 # COMMAND ----------
 
-@dlt.view(
+# DBTITLE 1,Gold
+@dlt.table(
     name="pyspark_clickstream_gold_clicks_total_by_os_family",
     comment="Camada Gold: Total de clicks por sistema operacional"
 )
@@ -127,7 +195,7 @@ def clickstream_gold_clicks_total_by_os_family():
     )
 
 
-@dlt.view(
+@dlt.table(
     name="pyspark_clickstream_gold_clicks_total_by_device_family",
     comment="Camada Gold: Total de clicks por tipo de dispositivo"
 )
@@ -143,7 +211,7 @@ def clickstream_gold_clicks_total_by_device_family():
     )
 
 
-@dlt.view(
+@dlt.table(
     name="pyspark_clickstream_gold_clicks_total_by_city",
     comment="Camada Gold: Total de clicks por cidade"
 )
