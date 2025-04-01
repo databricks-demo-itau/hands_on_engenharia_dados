@@ -15,8 +15,7 @@
 -- MAGIC
 -- MAGIC ### Regras de Acesso
 -- MAGIC - Usuários com acesso especial podem ver dados de seu próprio departamento
--- MAGIC - CPF e salário são mascarados para usuários sem permissão específica
--- MAGIC - Usuários do departamento Financeiro têm acesso especial aos dados sensíveis
+-- MAGIC - CPF e salário são mascarados para outros usuários (Somente você pode ver seu próprio CPF e salário)
 
 -- COMMAND ----------
 
@@ -198,8 +197,8 @@ SELECT * FROM funcionarios;
 -- MAGIC O Column Masking é implementado através de funções UDF específicas para cada coluna sensível.
 -- MAGIC 
 -- MAGIC Implementamos duas máscaras:
--- MAGIC 1. `cpf_mask`: Mascara o CPF para todos os usuários, exceto para usuários do departamento Financeiro
--- MAGIC 2. `salario_mask`: Mascara o salário para todos os usuários, exceto para usuários do departamento Financeiro
+-- MAGIC 1. `cpf_mask`: Mascara o CPF para todos os usuários
+-- MAGIC 2. `salario_mask`: Mascara o salário para todos os usuários
 -- MAGIC 
 -- MAGIC As funções de máscara consideram:
 -- MAGIC - O departamento do usuário
@@ -214,8 +213,7 @@ CREATE OR REPLACE FUNCTION cpf_mask (cpf STRING)
 RETURN CASE
   WHEN EXISTS(
     SELECT 1 FROM usuarios_acesso_especial u
-    WHERE u.departamento = 'Financeiro'
-    and u.email = CURRENT_USER()
+    where u.email = CURRENT_USER()
   )
    AND cpf in (select cpf from usuarios_acesso_especial f where f.email = CURRENT_USER()) 
    THEN cpf
@@ -226,8 +224,7 @@ CREATE OR REPLACE FUNCTION salario_mask (salario DECIMAL , cpf STRING)
 RETURN CASE
   WHEN EXISTS(
     SELECT 1 FROM usuarios_acesso_especial u
-    WHERE u.departamento = 'Financeiro'
-    and u.email = CURRENT_USER()
+    where u.email = CURRENT_USER()
   )
    AND cpf in (select cpf from usuarios_acesso_especial f where f.email = CURRENT_USER()) 
    THEN salario
