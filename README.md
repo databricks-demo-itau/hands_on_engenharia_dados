@@ -1,37 +1,93 @@
-# Demonstração de Segurança em Nível de Linha e Máscara de Colunas no Databricks
+# Hands-on Engenharia de Dados com Databricks
 
-Este diretório contém notebooks que demonstram funcionalidades avançadas de segurança no Databricks, especificamente:
+Este repositório contém uma série de demonstrações práticas das principais funcionalidades do Databricks, com foco em Engenharia de Dados. O objetivo é fornecer uma experiência hands-on com diferentes aspectos da plataforma Databricks e suas integrações.
 
-1. **Segurança em Nível de Linha (Row Level Security - RLS)**
-   - Permite controlar quais linhas de dados cada usuário pode visualizar
-   - Útil para cenários onde diferentes departamentos só devem ver seus próprios dados
-   - Implementado através de políticas de segurança
+## Demonstrações Principais
 
-2. **Máscara de Colunas (Column Masking)**
-   - Permite mascarar dados sensíveis em colunas específicas
-   - Diferentes usuários podem ver diferentes níveis de detalhamento dos dados
-   - Ideal para proteger informações sensíveis como CPF, salários, etc.
+### 1. Delta Lake
+- ACID transactions em Data Lakes
+- Operações DELETE/UPDATE/MERGE
+- Unificação de processamento batch e streaming
+- Time travel e versionamento de dados
+- Clonagem Zero-Copy
+- Particionamento otimizado
+- Change Data Flow (CDF)
+- Delta Lake 3.0: Liquid Clustering e Universal Format
 
-## Notebooks Disponíveis
+### 2. Auto Loader
+- Ingestão automática de dados
+- Schema inference e evolution
+- Processamento incremental
+- Suporte a múltiplos formatos de arquivo
+- Integração com cloud storage
 
-1. `README.md` (este arquivo): Explicação geral do conteúdo
-2. `rls_column_masking_demo.sql`: Demonstração prática das funcionalidades
+### 3. CDC com Delta Live Tables
+- Implementação de Change Data Capture
+- Pipelines declarativos
+- Qualidade de dados integrada
+- Monitoramento em tempo real
+- Orquestração automatizada
+
+## Cenários Bônus
+
+### 1. Federação com AWS Glue Catalog
+- Integração entre Unity Catalog e AWS Glue
+- Gerenciamento centralizado de metadados
+- Descoberta de dados federada
+- Governança unificada
+
+### 2. Segurança e Governança
+- Row Level Security (RLS)
+- Mascaramento de Colunas
+- Políticas de acesso granular
+- Auditoria e compliance
+
+### 3. CI/CD e Testes
+- Integração contínua com notebooks
+- Testes unitários automatizados
+- Deployment automatizado
+- Boas práticas de desenvolvimento
 
 ## Pré-requisitos
 
-- Acesso a um workspace do Databricks
-- Permissões para criar tabelas e políticas de segurança
-- Unity Catalog habilitado no workspace
+- Acesso a um workspace Databricks
+- Permissões adequadas no Unity Catalog
+- Conhecimento básico de SQL e Python
+- Familiaridade com conceitos de Data Engineering
+
+## Estrutura do Repositório
+
+```
+.
+├── delta_lake/              # Demos de Delta Lake
+├── auto_loader/            # Demos de Auto Loader
+├── cdc_pipeline/           # Demos de CDC com Delta Live Tables
+├── BONUS_glue/            # Demo de integração com AWS Glue
+├── BONUS_security/        # Demo de RLS e Column Masking
+└── BONUS_cicd/           # Demo de CI/CD e testes
+```
 
 ## Como Usar
 
-1. Abra o notebook `rls_column_masking_demo.sql`
-2. Execute as células em sequência
-3. Observe como diferentes usuários têm acesso a diferentes partes dos dados
-4. Ao final, todos os assets criados serão automaticamente removidos
+1. Clone este repositório
+2. Configure seu ambiente Databricks seguindo as instruções em cada diretório
+3. Execute os notebooks em sequência dentro de cada diretório
+4. Consulte a documentação específica em cada demo para mais detalhes
 
 ## Documentação Oficial
 
-- [Row Level Security](https://learn.microsoft.com/en-us/azure/databricks/security/access-control/table-acls/row-level-security)
-- [Column Masking](https://learn.microsoft.com/en-us/azure/databricks/security/access-control/table-acls/column-masking)
-- [Unity Catalog](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/overview) 
+- [Delta Lake](https://docs.databricks.com/delta/index.html)
+- [Auto Loader](https://docs.databricks.com/ingestion/auto-loader/index.html)
+- [Delta Live Tables](https://docs.databricks.com/workflows/delta-live-tables/index.html)
+- [Unity Catalog](https://docs.databricks.com/data-governance/unity-catalog/index.html)
+- [AWS Glue Federation](https://docs.databricks.com/aws/data-governance/unity-catalog/hms-federation/hms-federation-glue.html)
+- [Row Level Security e Column Masking](https://docs.databricks.com/aws/tables/row-and-column-filters.html)
+- [Testing Notebooks](https://docs.databricks.com/aws/notebooks/testing.html)
+
+## Contribuições
+
+Sinta-se à vontade para contribuir com melhorias, correções ou novas demonstrações através de pull requests.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para mais detalhes. 
