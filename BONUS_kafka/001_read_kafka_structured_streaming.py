@@ -5,6 +5,10 @@
 # MAGIC Este notebook demonstra como implementar a leitura de dados do Apache 
 # MAGIC Kafka usando Spark Structured Streaming.
 # MAGIC
+# MAGIC ## Requisitos de Cluster
+# MAGIC - Este notebook deve ser executado em um cluster All-Purpose ou Job Cluster
+# MAGIC - O cluster deve ter o Instance Profile `KafkaReadWriteInstanceProfile` configurado para autenticação com o Kafka
+# MAGIC
 # MAGIC ## Documentação Oficial
 # MAGIC - [Databricks Structured Streaming with Kafka](
 # MAGIC   https://docs.databricks.com/structured-streaming/kafka.html)
@@ -47,21 +51,27 @@ user_name = (dbutils.notebook.entry_point.getDbutils().notebook()
              .getContext().userName().toString()
              .split('@')[0].split('(')[1].replace('.', '_'))
 
+# Cria o schema se não existir
+spark.sql(f"CREATE SCHEMA IF NOT EXISTS dev_hands_on.{user_name}")
+
+# Define a variável para uso no SQL
+spark.sql("DECLARE VARIABLE user_name STRING")
+spark.sql(f"SET VARIABLE user_name = '{user_name}'")
+
 
 # COMMAND ----------
 
 # DBTITLE 1,Configuração do Catalog e Schema
 # MAGIC %sql
 # MAGIC USE CATALOG dev_hands_on;
-# MAGIC USE SCHEMA IDENTIFIER($user_name);
-
+# MAGIC USE SCHEMA IDENTIFIER(user_name);
+# MAGIC
 
 # COMMAND ----------
 
 # DBTITLE 1,Criação do Volume para Checkpoint
 # MAGIC %sql
 # MAGIC CREATE VOLUME IF NOT EXISTS sst_kafka_checkpoint;
-
 
 # COMMAND ----------
 
@@ -93,10 +103,14 @@ def get_kafka_options(bootstrapservers: str, topic: str) -> Dict[str, Any]:
 
 # COMMAND ----------
 
+
+
+# COMMAND ----------
+
 # DBTITLE 1,Leitura do Kafka e Escrita na Camada Bronze
 # Configurações do Kafka
-bootstrapservers = spark.conf.get("bootstrapservers")
-topic = spark.conf.get("topic")
+bootstrapservers ="b-1.itaudevkafka01.nohjsv.c21.kafka.us-east-1.amazonaws.com:9098,b-2.itaudevkafka01.nohjsv.c21.kafka.us-east-1.amazonaws.com:9098b-1.itaudevkafka01.nohjsv.c21.kafka.us-east-1.amazonaws.com:9098,b-2.itaudevkafka01.nohjsv.c21.kafka.us-east-1.amazonaws.com:9098"
+topic = "dev_clickstream"
 
 # Leitura do stream do Kafka
 kafka_stream = (
@@ -137,11 +151,8 @@ query = (
 
 # DBTITLE 1,Limpeza dos Assets
 # MAGIC %sql
-# MAGIC -- Aguarda 1 minuto para demonstração e então limpa os assets
-# MAGIC SELECT sleep(60000);
-# MAGIC 
 # MAGIC -- Drop da tabela bronze
 # MAGIC DROP TABLE IF EXISTS sst_clickstream_bronze;
-# MAGIC 
+# MAGIC
 # MAGIC -- Drop do volume de checkpoint
 # MAGIC DROP VOLUME sst_kafka_checkpoint; 
