@@ -106,6 +106,50 @@ SELECT * FROM funcionarios;
 -- MAGIC Ela define quais usuários têm permissões especiais e a quais departamentos eles têm acesso.
 -- MAGIC 
 -- MAGIC Esta tabela será utilizada tanto para o RLS quanto para o Column Masking.
+-- MAGIC 
+-- MAGIC ### Alternativas à Mapping Table
+-- MAGIC 
+-- MAGIC Embora nesta demo utilizemos uma tabela de mapeamento para facilitar a demonstração e testes,
+-- MAGIC em ambientes de produção é comum utilizar funções nativas do Databricks que integram
+-- MAGIC diretamente com o sistema de identidade (Identity Provider) e grupos de usuários.
+-- MAGIC 
+-- MAGIC #### Funções Disponíveis
+-- MAGIC - `CURRENT_USER()`: Retorna o email do usuário atual
+-- MAGIC - `IS_ACCOUNT_GROUP_MEMBER('grupo')`: Verifica se o usuário pertence a um grupo específico
+-- MAGIC - `IS_MEMBER('grupo')`: Verifica se o usuário é membro de um grupo no workspace
+-- MAGIC 
+-- MAGIC #### Exemplos de Implementação
+-- MAGIC 
+-- MAGIC **Row Level Security com Grupos:**
+-- MAGIC ```sql
+-- MAGIC CREATE FUNCTION dept_access(department STRING)
+-- MAGIC RETURN IS_ACCOUNT_GROUP_MEMBER('admin')
+-- MAGIC   OR IS_ACCOUNT_GROUP_MEMBER(department);
+-- MAGIC ```
+-- MAGIC 
+-- MAGIC **Column Masking com Grupos:**
+-- MAGIC ```sql
+-- MAGIC CREATE FUNCTION salary_mask(salary DECIMAL)
+-- MAGIC RETURN CASE
+-- MAGIC   WHEN IS_ACCOUNT_GROUP_MEMBER('finance_admin') THEN salary
+-- MAGIC   WHEN IS_ACCOUNT_GROUP_MEMBER('finance_read') THEN ROUND(salary, -3)
+-- MAGIC   ELSE 0
+-- MAGIC END;
+-- MAGIC ```
+-- MAGIC 
+-- MAGIC **Combinando Múltiplas Validações:**
+-- MAGIC ```sql
+-- MAGIC CREATE FUNCTION sensitive_data_access(department STRING)
+-- MAGIC RETURN IS_ACCOUNT_GROUP_MEMBER('admin')
+-- MAGIC   OR (IS_ACCOUNT_GROUP_MEMBER('data_scientist') AND department = 'Research')
+-- MAGIC   OR (IS_MEMBER('power_user') AND CURRENT_USER() LIKE '%@company.com');
+-- MAGIC ```
+-- MAGIC 
+-- MAGIC Estas abordagens são mais seguras e escaláveis, pois:
+-- MAGIC - Integram diretamente com o sistema de gestão de identidade
+-- MAGIC - Não requerem manutenção de tabelas de mapeamento
+-- MAGIC - Atualizam automaticamente quando usuários são adicionados/removidos de grupos
+-- MAGIC - São mais difíceis de burlar ou manipular
 
 -- COMMAND ----------
 
