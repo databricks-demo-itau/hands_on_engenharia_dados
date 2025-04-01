@@ -1,0 +1,50 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- Comentarios no codigo e ou textos explicativos em markdown sempre devem ser em Portugues - BR
+- Voce é um agente que esta me ajudando a desenvolver alguns demos para Databricks
+- Voce ira trabalhar com notebooks, utilizar o tipo source descrito em: https://learn.microsoft.com/en-us/azure/databricks/notebooks/notebook-format
+- Todos os notebooks (Sempre que possivel) deve ser self contained.
+- Em qualquer codigo ou exemplo, sempre adicione comentarios explicativos para que leigos consigam acompanhar.
+- Sempre referencie as documentações oficiais e as documentações que já estão anexadas na propria IDE
+- Quando ja estiver com o catalog e o schema, adicionar uma celula com use catalog e use schema no padrao
+
+```
+use catalog dev_hands_on;
+use schema IDENTIFIER(schema_name);
+```
+
+- Todo e qualquer asset criado dentro do Databricks deve ser sempre no unity catalog, no catalogo: dev_hands_on e o schema deve ser um schema com o nome de usuario que está executando, sempre dando replace nos "." por "_" um exemplo de código pytho que funciona para pegar o nome de usuario, já formatado é o seguinte.
+
+```
+#Exemplo de codigo python para pegar o nome de usuario ja formatado
+user_name = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName()
+user_name = user_name.toString().split('@')[0].split('(')[1].replace('.', '_')
+
+```
+
+- No final de cada notebook, deletado os assets criados (menos o catalogo e o schema)
+
+
+- Quando definir uma variable em python e precisar utilizar em SQL, sempre sete o valor atraves do spark.sql() e seguindo https://docs.databricks.com/aws/en/sql/language-manual/sql-ref-syntax-aux-set-variable. Tambem é preciso criar a variavel SQL antes de setar o seu valor
+- REFERENCIANDO OBJETO COM VARIAVEL EM SQL : 
+```
+select * from IDENTIFIER("dev_hands_on." || schema_name || ".funcionarios")
+```
+- Para exemplos de row_filter, sempre use essa documentacão https://docs.databricks.com/aws/en/tables/row-and-column-filters
+- O comando SET ROW FILTER deve ter somente o nome do filtro, sem schema e catalogo
+
+````
+SET ROW FILTER ti_filter ON (departamento);
+```
+
+- To apply the colum mask, this is the syntax
+```
+ALTER TABLE <table_name> ALTER COLUMN <col_name> SET MASK <mask_func_name> USING COLUMNS <additional_columns>;
+```
+
