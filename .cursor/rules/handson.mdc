@@ -1,9 +1,4 @@
 ---
-description: 
-globs: 
-alwaysApply: true
----
----
 description: Regras e diretrizes para desenvolvimento de demos no Databricks
 globs: 
 alwaysApply: true
@@ -14,7 +9,9 @@ alwaysApply: true
 ## Idioma e Documentação
 - Todos os comentários no código e textos explicativos em markdown devem ser em Português - BR
 - Sempre referencie as documentações oficiais e as documentações que já estão anexadas na própria IDE
-- Em qualquer código ou exemplo, sempre adicione comentários explicativos para que leigos consa do Notebook
+- Em qualquer código ou exemplo, sempre adicione comentários explicativos para que leigos consigam acompanhar
+
+## Estrutura do Notebook
 - Todos os notebooks devem ser self-contained quando possível
 - Utilize o tipo source conforme descrito em: https://learn.microsoft.com/en-us/azure/databricks/notebooks/notebook-format
 - Para referência de formato, consulte: [rls_column_masking_demo.sql](mdc:BONUS_row_level_security_column_masking/rls_column_masking_demo.sql)
