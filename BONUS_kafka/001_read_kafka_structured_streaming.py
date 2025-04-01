@@ -55,7 +55,7 @@ user_name = (dbutils.notebook.entry_point.getDbutils().notebook()
 spark.sql(f"CREATE SCHEMA IF NOT EXISTS dev_hands_on.{user_name}")
 
 # Define a variável para uso no SQL
-spark.sql("DECLARE VARIABLE user_name STRING")
+spark.sql("DECLARE OR REPLACE VARIABLE user_name STRING")
 spark.sql(f"SET VARIABLE user_name = '{user_name}'")
 
 
@@ -97,17 +97,13 @@ def get_kafka_options(bootstrapservers: str, topic: str) -> Dict[str, Any]:
         "kafka.sasl.jaas.config": jaas,
         "kafka.security.protocol": "SASL_SSL",
         "startingOffsets": "earliest",
-        "kafka.sasl.client.callback.handler.class": handler
+        "kafka.sasl.client.callback.handler.class": handler,
+        "maxOffsetsPerTrigger": 100
     }
 
 
 # COMMAND ----------
 
-
-
-# COMMAND ----------
-
-# DBTITLE 1,Leitura do Kafka e Escrita na Camada Bronze
 # Configurações do Kafka
 bootstrapservers ="b-1.itaudevkafka01.nohjsv.c21.kafka.us-east-1.amazonaws.com:9098,b-2.itaudevkafka01.nohjsv.c21.kafka.us-east-1.amazonaws.com:9098b-1.itaudevkafka01.nohjsv.c21.kafka.us-east-1.amazonaws.com:9098,b-2.itaudevkafka01.nohjsv.c21.kafka.us-east-1.amazonaws.com:9098"
 topic = "dev_clickstream"
@@ -123,6 +119,8 @@ kafka_stream = (
     .load()
 )
 
+# COMMAND ----------
+
 # Processamento do stream
 bronze_stream = (
     kafka_stream
@@ -133,6 +131,9 @@ bronze_stream = (
     .select("kafka_value.*")
 )
 
+# COMMAND ----------
+
+# DBTITLE 1,Leitura do Kafka e Escrita na Camada Bronze
 # Escrita do stream na tabela bronze
 query = (
     bronze_stream.writeStream
@@ -146,6 +147,7 @@ query = (
     .table("sst_clickstream_bronze")
 )
 
+# A velocidade processamento está limitado nas configurações do Kafka, através do parametro "maxOffsetsPerTrigger": 100
 
 # COMMAND ----------
 
