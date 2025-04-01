@@ -1,5 +1,35 @@
 -- Databricks notebook source
--- DBTITLE 1,Select no MSK
+-- MAGIC %md
+-- MAGIC # Demonstração de Leitura de Dados do Kafka
+-- MAGIC
+-- MAGIC Este notebook demonstra como implementar a leitura de dados do Apache Kafka no Databricks, utilizando a arquitetura Medallion.
+-- MAGIC
+-- MAGIC ## Documentação Oficial
+-- MAGIC - [Databricks Structured Streaming with Kafka](https://docs.databricks.com/structured-streaming/kafka.html)
+-- MAGIC - [AWS MSK IAM Authentication](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html)
+-- MAGIC
+-- MAGIC ## Cenário de Demonstração
+-- MAGIC Vamos criar um cenário prático onde:
+-- MAGIC 1. Lemos dados de clickstream em tempo real do Kafka
+-- MAGIC 2. Implementamos a arquitetura Medallion (Bronze, Silver, Gold)
+-- MAGIC 3. Aplicamos validações e transformações nos dados
+-- MAGIC
+-- MAGIC ### Arquitetura de Dados
+-- MAGIC - **Bronze**: Dados brutos do Kafka
+-- MAGIC - **Silver**: Dados validados e estruturados
+-- MAGIC - **Gold**: Agregações e métricas de negócio
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC ## 1. Leitura dos Dados do Kafka (Bronze Layer)
+-- MAGIC
+-- MAGIC Na camada Bronze, realizamos a ingestão dos dados brutos do Kafka.
+-- MAGIC Os dados são lidos em formato JSON e armazenados sem transformações.
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Criando tabela Bronze com dados do Kafka
 CREATE OR REFRESH STREAMING TABLE clickstream_bronze
 AS
 SELECT
@@ -23,11 +53,16 @@ FROM
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC inserir desenho medallion Again
+-- MAGIC ## 2. Processamento dos Dados (Silver Layer)
+-- MAGIC
+-- MAGIC Na camada Silver, aplicamos validações e estruturação nos dados:
+-- MAGIC - Validamos campos obrigatórios
+-- MAGIC - Removemos registros inválidos
+-- MAGIC - Estruturamos os dados em colunas tipadas
 
 -- COMMAND ----------
 
--- DBTITLE 1,Criando tabela "streaming" lendo da tabela raw para a tabela CLICKSTREAM
+-- DBTITLE 1,Criando tabela Silver com validações
 CREATE OR REFRESH STREAMING TABLE clickstream_silver
 (
   CONSTRAINT session_id_not_null EXPECT (SESSION_ID IS NOT NULL)  ,
@@ -50,7 +85,17 @@ FROM
 
 -- COMMAND ----------
 
--- DBTITLE 1,Criando tabelas adicionais (view materializadas)
+-- MAGIC %md
+-- MAGIC ## 3. Análises e Agregações (Gold Layer)
+-- MAGIC
+-- MAGIC Na camada Gold, criamos views materializadas com métricas de negócio:
+-- MAGIC - Total de clicks por sistema operacional
+-- MAGIC - Total de clicks por tipo de dispositivo
+-- MAGIC - Total de clicks por cidade
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Criando views materializadas com métricas de negócio
 CREATE OR REPLACE MATERIALIZED VIEW clickstream_gold_clicks_total_by_os_family AS
 SELECT
   OS_FAMILY,
