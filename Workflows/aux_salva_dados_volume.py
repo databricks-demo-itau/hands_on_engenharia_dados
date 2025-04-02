@@ -10,29 +10,7 @@
 # MAGIC - Gerar dados realistas de clientes com informações pessoais
 # MAGIC - Gerar dados de transações associadas a estes clientes
 # MAGIC - Salvar os dados no formato JSON em um Volume específico do usuário
-# MAGIC 
-# MAGIC ## Bibliotecas Utilizadas
-# MAGIC - Faker: Para geração de dados sintéticos realistas
-# MAGIC - PySpark: Para manipulação distribuída dos dados
-# MAGIC 
-# MAGIC ## Estrutura dos Dados
-# MAGIC ### Clientes
-# MAGIC - id: Identificador único
-# MAGIC - firstname: Nome
-# MAGIC - lastname: Sobrenome
-# MAGIC - email: Email corporativo
-# MAGIC - address: Endereço
-# MAGIC - operation: Tipo de operação (APPEND, DELETE, UPDATE)
-# MAGIC - operation_date: Data da operação
-# MAGIC 
-# MAGIC ### Transações
-# MAGIC - id: Identificador único
-# MAGIC - customer_id: ID do cliente
-# MAGIC - transaction_date: Data da transação
-# MAGIC - amount: Valor da transação
-# MAGIC - item_count: Quantidade de itens
-# MAGIC - operation: Tipo de operação
-# MAGIC - operation_date: Data da operação
+
 
 # COMMAND ----------
 
