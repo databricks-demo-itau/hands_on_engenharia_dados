@@ -25,6 +25,13 @@ Bem-vindo aos Labs práticos do Databricks! Esta seção contém uma série de d
 - Integração com recursos do Unity Catalog
 - Clonagem de tabelas para Delta
 
+### 5. <a href="$./README_CICD.md">CICD, Unit Test e Github Actions</a>
+- Databricks Asset Bundles (DABS)
+- Integração Contínua e Entrega Contínua (CI/CD)
+- Testes Unitários em notebooks Databricks
+- Github Actions
+- **Nota**: Este laboratório está disponível em um repositório separado devido à sua natureza mais complexa
+
 ## Estrutura dos Laboratórios
 
 ```
