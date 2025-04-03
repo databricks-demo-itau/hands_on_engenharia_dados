@@ -4,13 +4,13 @@ Este guia apresenta uma demonstração prática do Auto Loader do Databricks, fo
 
 ## Pré-requisitos
 - Acesso ao ambiente Databricks
-- dbdemos instalado (execute o notebook `001_Instala_dbdemos_engenharia.ipynb` caso ainda não tenha instalado)
-- Conhecimento básico de Delta Lake (recomendado)
+- Conhecimento básico de ingestão de dados
+- dbdemos instalado
 
 ## Roteiro de Execução
 
 ### Auto Loader com Evolução de Schema
-**Notebook**: `01-Auto-loader-schema-evolution-Ingestion.py`
+**Notebook**: <a href="$./auto-loader/01-Auto-loader-schema-evolution-Ingestion.py">01-Auto-loader-schema-evolution-Ingestion.py</a>
 - Introdução ao Auto Loader
 - Configuração de ingestão automática de dados
 - Gerenciamento de evolução de schema
@@ -19,16 +19,14 @@ Este guia apresenta uma demonstração prática do Auto Loader do Databricks, fo
 - Boas práticas e casos de uso
 
 ## Recursos Adicionais
-- A pasta `_resources` contém dados de exemplo e arquivos auxiliares para os exercícios
+- Documentação oficial do Auto Loader
+- Exemplos de configurações avançadas
+- Dicas de troubleshooting
 
 ## Observações Importantes
 - O notebook contém instruções detalhadas em português
 - Preste atenção aos comentários sobre configuração do Auto Loader
 - Entenda os diferentes modos de evolução de schema disponíveis
-- Limpe os recursos após a conclusão dos exercícios
-- Em caso de dúvidas, consulte a documentação referenciada no notebook
+- Limpe os recursos após concluir cada exercício
 
-## Próximos Passos Recomendados
-- Após completar este hands-on, considere explorar a integração do Auto Loader com Delta Live Tables
-- Experimente diferentes configurações de evolução de schema
-- Teste com diferentes formatos de dados de entrada 
+Para retornar ao índice das demonstrações, clique <a href="$./README.md">aqui</a>. 
