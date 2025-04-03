@@ -47,23 +47,6 @@ Pratique com exercícios hands-on:
 
 Para mais detalhes sobre os laboratórios, consulte o <a href="$./LABS/README.md">README dos Laboratórios</a>.
 
-## Estrutura do Repositório
-
-```
-.
-├── DBDEMOS/
-│   ├── delta-lake/           # Notebooks do Delta Lake
-│   ├── dlt-cdc/             # Notebooks do DLT com CDC
-│   ├── auto-loader/         # Notebooks do Auto Loader
-│   └── _resources/          # Recursos compartilhados
-│
-└── LABS/
-    ├── SQL_Scripiting/      # Labs de SQL avançado
-    ├── Kafka/               # Labs de integração Kafka
-    ├── Row_level_security_Column_Masking/  # Labs de segurança
-    └── Glue_catalog_federation/  # Labs de federação Glue
-```
-
 ## Boas Práticas
 
 - Mantenha o catálogo e schema organizados conforme as instruções
