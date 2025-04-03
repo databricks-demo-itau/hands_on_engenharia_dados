@@ -19,10 +19,11 @@ Bem-vindo aos Labs práticos do Databricks! Esta seção contém uma série de d
 - Mascaramento de colunas
 - Controle de acesso granular
 
-### 4. <a href="$./README_Glue.md">Glue Catalog Federation</a>
-- Federação de catálogos
-- Integração com AWS Glue
-- Gerenciamento de metadados
+### 4. <a href="$./Glue_catalog_federation/README.md">Glue Catalog Federation</a>
+- Federação de catálogos AWS Glue
+- Acesso direto a dados sem ETL
+- Integração com recursos do Unity Catalog
+- Clonagem de tabelas para Delta
 
 ## Estrutura dos Laboratórios
 
@@ -48,6 +49,7 @@ LABS/
 - Permissões necessárias para criar e executar notebooks
 - Conhecimento básico de SQL e Python
 - Familiaridade com os conceitos básicos do Databricks
+- Acesso configurado ao Unity Catalog e AWS Glue
 
 ## Suporte
 

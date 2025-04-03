@@ -1,5 +1,4 @@
 -- Databricks notebook source
-
 -- MAGIC %md
 -- MAGIC # Federação de Catálogo AWS Glue no Unity Catalog
 -- MAGIC
@@ -8,6 +7,7 @@
 -- MAGIC Este notebook demonstra como utilizar a funcionalidade de federação de catálogo do AWS Glue no Unity Catalog do Databricks. 
 -- MAGIC A federação de catálogo permite que você acesse e gerencie tabelas registradas no AWS Glue diretamente através do Unity Catalog, 
 -- MAGIC sem necessidade de ETL ou cópia de dados.
+-- MAGIC
 -- MAGIC
 -- MAGIC ### Conceitos Importantes
 -- MAGIC
@@ -22,7 +22,7 @@
 -- MAGIC - Catálogo federado `dev_glue` configurado
 -- MAGIC - Schema `product` com as tabelas:
 -- MAGIC   - `portfolio`
--- MAGIC   - `price`
+-- MAGIC   - `prices`
 
 -- COMMAND ----------
 
@@ -54,15 +54,27 @@ SELECT * FROM portfolio LIMIT 5;
 -- COMMAND ----------
 
 -- Visualizando os dados da tabela price
-SELECT * FROM price LIMIT 5;
+SELECT * FROM prices LIMIT 5;
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC # Funcionalidades Databricks e UC
+-- MAGIC É possivel utilizar algumas funcionalidades do Unity Catalog e do Databricks sem precisar realizar a ingestão da tabela, como por exemplo utilizar Genie.
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC ![Processo de criação de Git Folder no Databricks](../../Guias_UI/images/Genie_Glue.png)
 
 -- COMMAND ----------
 
 -- MAGIC %md
 -- MAGIC ## Clonando Tabelas para o Unity Catalog
 -- MAGIC
--- MAGIC Agora vamos demonstrar como clonar as tabelas do AWS Glue para o Unity Catalog usando a técnica de clone.
--- MAGIC Este processo é eficiente pois não copia os dados, apenas os metadados.
+-- MAGIC Agora vamos demonstrar como clonar as tabelas do AWS Glue para o formato Delta,usando a técnica de clone.  
+-- MAGIC
+-- MAGIC Este processo é eficiente pois pode copiar **incrementalmente** os dados.
 
 -- COMMAND ----------
 
@@ -79,13 +91,13 @@ CLONE dev_glue.product.portfolio;
 -- COMMAND ----------
 
 -- Clonando a tabela price
-CREATE TABLE IF NOT EXISTS price_clone 
-CLONE dev_glue.product.price;
+CREATE TABLE IF NOT EXISTS prices_clone 
+CLONE dev_glue.product.prices;
 
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC ## Verificando as Tabelas Clonadas
+-- MAGIC ## Verificando as Tabelas Clonadas (Para Delta dentro do Unity Catalog)
 -- MAGIC
 -- MAGIC Vamos verificar se as tabelas foram clonadas corretamente:
 
@@ -97,7 +109,7 @@ SELECT * FROM portfolio_clone LIMIT 5;
 -- COMMAND ----------
 
 -- Consultando a tabela price clonada
-SELECT * FROM price_clone LIMIT 5;
+SELECT * FROM prices_clone LIMIT 5;
 
 -- COMMAND ----------
 
@@ -109,4 +121,4 @@ SELECT * FROM price_clone LIMIT 5;
 -- COMMAND ----------
 
 DROP TABLE IF EXISTS portfolio_clone;
-DROP TABLE IF EXISTS price_clone;
+DROP TABLE IF EXISTS prices_clone;

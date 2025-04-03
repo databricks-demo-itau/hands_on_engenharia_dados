@@ -10,6 +10,7 @@ Este repositório contém o material para o hands-on de Engenharia de Dados no D
   - Criar pipelines DLT
   - Criar dashboards e queries no DBSQL
   - Acesso ao Unity Catalog
+  - Acesso a catálogos externos (AWS Glue)
 
 ## Estrutura do Hands-on
 
@@ -28,7 +29,7 @@ Pratique com exercícios hands-on:
 - <a href="$./LABS/README_SQL_Scripting.md">SQL Scripting</a>
 - <a href="$./LABS/README_Kafka.md">Kafka Integration</a>
 - <a href="$./LABS/README_RLS_CM.md">Row-level Security e Column Masking</a>
-- <a href="$./LABS/README_Glue.md">Glue Catalog Federation</a>
+- <a href="$./LABS/Glue_catalog_federation/README.md">Glue Catalog Federation</a>
 
 Para mais detalhes sobre os laboratórios, consulte o <a href="$./LABS/README.md">README dos Laboratórios</a>.
 
