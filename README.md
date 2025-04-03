@@ -34,7 +34,7 @@ Para mais detalhes sobre os laboratórios, consulte o <a href="$./LABS/README.md
 
 ## Configuração Inicial
 
-1. Abra o notebook <a href="$./001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
+1. Abra o notebook <a href="$./DBDEMOS/001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
 2. Execute as células em sequência para:
    - Configurar seu nome de usuário
    - Instalar a biblioteca dbdemos
