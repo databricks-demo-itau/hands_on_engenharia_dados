@@ -47,16 +47,6 @@ Pratique com exercícios hands-on:
 
 Para mais detalhes sobre os laboratórios, consulte o <a href="$./LABS/README.md">README dos Laboratórios</a>.
 
-## Configuração Inicial
-
-1. <a href="$./Guias_UI/git_folder.md">Criar Git Folder</a> para clonar este repositório
-2. <a href="$./Guias_UI/cluster.md">Criar um Cluster</a> para executar os notebooks
-3. Abra o notebook <a href="$./DBDEMOS/001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
-4. Execute as células em sequência para:
-   - Configurar seu nome de usuário
-   - Instalar a biblioteca dbdemos
-   - Instalar as demos necessárias
-
 ## Estrutura do Repositório
 
 ```
