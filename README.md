@@ -44,14 +44,9 @@ Pratique com exercícios hands-on:
 - <a href="$./LABS/README_Kafka.md">Kafka Integration</a>
 - <a href="$./LABS/README_RLS_CM.md">Row-level Security e Column Masking</a>
 - <a href="$./LABS/README_Glue.md">Glue Catalog Federation</a>
+- <a href="$./LABS/README_CICD.md">DABS + CICD + Unit Test + Databricks Connect + Github Actions</a>
 
 Para mais detalhes sobre os laboratórios, consulte o <a href="$./LABS/README.md">README dos Laboratórios</a>.
-
-## Boas Práticas
-
-- Mantenha o catálogo e schema organizados conforme as instruções
-- Limpe os recursos criados após cada laboratório
-- Documente suas observações e aprendizados
 
 ## Suporte
 
