@@ -14,7 +14,11 @@ Este repositório contém o material para o hands-on de Engenharia de Dados no D
 
 ## Configuração Inicial
 
-1. <a href="$./Guias_UI/git_folder.md">Criar Git Folder</a> para clonar este repositório
+
+### Eu estou acessando esse documento pelo GITHUB:
+1. [Passo a passo de como criar Git Folder no Databricks](./Guias_UI/git_folder.md).
+
+### Após clonar, siga pelo DATABRICKS:
 2. <a href="$./Guias_UI/cluster.md">Criar um Cluster</a> para executar os notebooks
 3. Abra o notebook <a href="$./DBDEMOS/001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
 4. Execute as células em sequência para:
