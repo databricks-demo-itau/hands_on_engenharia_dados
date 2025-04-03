@@ -12,6 +12,16 @@ Este repositório contém o material para o hands-on de Engenharia de Dados no D
   - Acesso ao Unity Catalog
   - Acesso a catálogos externos (AWS Glue)
 
+## Configuração Inicial
+
+1. <a href="$./Guias_UI/git_folder.md">Criar Git Folder</a> para clonar este repositório
+2. <a href="$./Guias_UI/cluster.md">Criar um Cluster</a> para executar os notebooks
+3. Abra o notebook <a href="$./DBDEMOS/001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
+4. Execute as células em sequência para:
+   - Configurar seu nome de usuário
+   - Instalar a biblioteca dbdemos
+   - Instalar as demos necessárias
+
 ## Estrutura do Hands-on
 
 O hands-on está dividido em duas partes principais:
@@ -35,8 +45,10 @@ Para mais detalhes sobre os laboratórios, consulte o <a href="$./LABS/README.md
 
 ## Configuração Inicial
 
-1. Abra o notebook <a href="$./DBDEMOS/001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
-2. Execute as células em sequência para:
+1. <a href="$./Guias_UI/git_folder.md">Criar Git Folder</a> para clonar este repositório
+2. <a href="$./Guias_UI/cluster.md">Criar um Cluster</a> para executar os notebooks
+3. Abra o notebook <a href="$./DBDEMOS/001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
+4. Execute as células em sequência para:
    - Configurar seu nome de usuário
    - Instalar a biblioteca dbdemos
    - Instalar as demos necessárias
