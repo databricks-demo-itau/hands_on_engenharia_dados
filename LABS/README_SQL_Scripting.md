@@ -1,38 +1,34 @@
-# Hands-on: SQL Scripting Avançado
-
-Este guia apresenta técnicas avançadas de SQL Scripting no Databricks, incluindo integração com APIs e boas práticas de desenvolvimento.
+# Hands-on: SQL Scripting
 
 ## Pré-requisitos
 - Acesso ao ambiente Databricks
 - Conhecimento básico de SQL
-- Familiaridade com conceitos de APIs REST
+- dbdemos instalado
 
 ## Roteiro de Execução
 
 ### 1. Conceitos Básicos de SQL Scripting
-**Notebook**: <a href="$./SQL_Scripiting/001_basic_sql_scripting_examples.sql">001_basic_sql_scripting_examples.sql</a>
-- Fundamentos de SQL no Databricks
-- Manipulação avançada de dados
-- Funções e procedimentos armazenados
-- Otimização de consultas
+**Notebook**: <a href="$./SQL_Scripiting/001_basic_sql_scripting_examples">001_basic_sql_scripting_examples</a>
+- Fundamentos de SQL Scripting
+- Estruturas de controle
+- Variáveis e parâmetros
+- Funções e procedimentos
 
 ### 2. Integração com APIs
-**Notebook**: <a href="$./SQL_Scripiting/002_advanced_read_data_from_API.sql">002_advanced_read_data_from_API.sql</a>
-- Leitura de dados de APIs REST
+**Notebook**: <a href="$./SQL_Scripiting/002_advanced_read_data_from_API">002_advanced_read_data_from_API</a>
+- Consumo de APIs REST
 - Transformação de dados JSON
 - Integração com serviços externos
-- Boas práticas de manipulação de APIs
+- Boas práticas de integração
 
 ## Recursos Adicionais
-- Documentação oficial do Databricks SQL
+- Documentação oficial do SQL Scripting
 - Exemplos práticos de casos de uso
-- Dicas de otimização e performance
+- Dicas de otimização
 
 ## Observações Importantes
 - Execute os notebooks na ordem apresentada
-- Cada notebook contém instruções detalhadas em português
-- Preste atenção aos comentários sobre boas práticas
-- Teste as queries em pequenos conjuntos de dados antes de executar em produção
-- Limpe os recursos temporários após a conclusão dos exercícios
+- Instruções detalhadas em português
+- Limpe os recursos após concluir os exercícios
 
 Para retornar ao índice dos laboratórios, clique <a href="$./README.md">aqui</a>. 
