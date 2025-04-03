@@ -10,14 +10,14 @@ Este guia apresenta técnicas avançadas de SQL Scripting no Databricks, incluin
 ## Roteiro de Execução
 
 ### 1. Conceitos Básicos de SQL Scripting
-**Notebook**: `001_basic_sql_scripting_examples.sql`
+**Notebook**: <a href="$./SQL_Scripiting/001_basic_sql_scripting_examples.sql">001_basic_sql_scripting_examples.sql</a>
 - Fundamentos de SQL no Databricks
 - Manipulação avançada de dados
 - Funções e procedimentos armazenados
 - Otimização de consultas
 
 ### 2. Integração com APIs
-**Notebook**: `002_advanced_read_data_from_API.sql`
+**Notebook**: <a href="$./SQL_Scripiting/002_advanced_read_data_from_API.sql">002_advanced_read_data_from_API.sql</a>
 - Leitura de dados de APIs REST
 - Transformação de dados JSON
 - Integração com serviços externos

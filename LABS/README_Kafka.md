@@ -11,21 +11,21 @@ Este guia apresenta diferentes abordagens para integrar o Databricks com Apache 
 ## Roteiro de Execução
 
 ### 1. Leitura de Dados do Kafka com SQL
-**Notebook**: `001_read_kafka.sql`
+**Notebook**: <a href="$./Kafka/001_read_kafka.sql">001_read_kafka.sql</a>
 - Configuração básica de conexão
 - Leitura de tópicos Kafka usando SQL
 - Transformações em tempo real
 - Boas práticas de consumo de dados
 
 ### 2. Streaming Estruturado com PySpark
-**Notebook**: `001_read_kafka_structured_streaming.py`
+**Notebook**: <a href="$./Kafka/001_read_kafka_structured_streaming.py">001_read_kafka_structured_streaming.py</a>
 - Structured Streaming com Kafka
 - Processamento em tempo real
 - Gerenciamento de checkpoints
 - Tratamento de erros e recuperação
 
 ### 3. Integração Avançada com PySpark
-**Notebook**: `001_read_kafka_pyspark.py`
+**Notebook**: <a href="$./Kafka/001_read_kafka_pyspark.py">001_read_kafka_pyspark.py</a>
 - Implementação com PySpark
 - Transformações complexas
 - Otimização de performance

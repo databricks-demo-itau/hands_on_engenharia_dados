@@ -11,7 +11,7 @@ Este guia apresenta a integração entre o Databricks e o AWS Glue Catalog, perm
 ## Roteiro de Execução
 
 ### Configuração e Uso do Glue Catalog
-**Notebook**: `000_readme.ipynb`
+**Notebook**: <a href="$./Glue_catalog_federation/000_readme.ipynb">000_readme.ipynb</a>
 - Configuração da federação de catálogo
 - Integração com AWS Glue
 - Acesso a tabelas externas

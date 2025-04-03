@@ -16,19 +16,25 @@ Este repositório contém o material para o hands-on de Engenharia de Dados no D
 O hands-on está dividido em duas partes principais:
 
 ### 1. <a href="$./DBDEMOS/README.md">Demonstrações Interativas (DBDEMOS)</a>
+Explore os conceitos fundamentais através de demos interativas:
 - <a href="$./DBDEMOS/README_Delta_Lake.md">Delta Lake</a>
 - <a href="$./DBDEMOS/README_Auto_Loader.md">Auto Loader</a>
 - <a href="$./DBDEMOS/README_DLT_CDC.md">DLT CDC</a>
 
+Para mais detalhes sobre as demos, consulte o <a href="$./DBDEMOS/README.md">README das Demonstrações</a>.
+
 ### 2. <a href="$./LABS/README.md">Laboratórios Práticos (LABS)</a>
+Pratique com exercícios hands-on:
 - <a href="$./LABS/README_SQL_Scripting.md">SQL Scripting</a>
 - <a href="$./LABS/README_Kafka.md">Kafka Integration</a>
 - <a href="$./LABS/README_RLS_CM.md">Row-level Security e Column Masking</a>
 - <a href="$./LABS/README_Glue.md">Glue Catalog Federation</a>
 
+Para mais detalhes sobre os laboratórios, consulte o <a href="$./LABS/README.md">README dos Laboratórios</a>.
+
 ## Configuração Inicial
 
-1. Abra o notebook `001_Instala_dbdemos_engenharia.ipynb`
+1. Abra o notebook <a href="$./001_Instala_dbdemos_engenharia.ipynb">001_Instala_dbdemos_engenharia.ipynb</a>
 2. Execute as células em sequência para:
    - Configurar seu nome de usuário
    - Instalar a biblioteca dbdemos
@@ -53,7 +59,6 @@ O hands-on está dividido em duas partes principais:
 
 ## Boas Práticas
 
-- Siga as diretrizes estabelecidas no arquivo de regras do Cursor
 - Mantenha o catálogo e schema organizados conforme as instruções
 - Limpe os recursos criados após cada laboratório
 - Documente suas observações e aprendizados

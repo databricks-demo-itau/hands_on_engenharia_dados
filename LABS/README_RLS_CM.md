@@ -11,7 +11,7 @@ Este guia apresenta técnicas avançadas de segurança no Databricks, focando em
 ## Roteiro de Execução
 
 ### Implementação de RLS e Column Masking
-**Notebook**: `rls_column_masking_demo.sql`
+**Notebook**: <a href="$./Row_level_security_Column_Masking/rls_column_masking_demo.sql">rls_column_masking_demo.sql</a>
 - Configuração de Row Level Security
 - Implementação de Column Masking
 - Políticas de acesso dinâmicas
