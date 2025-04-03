@@ -4,6 +4,7 @@ Este guia demonstra o passo a passo para criar um Git Folder no Databricks.
 
 ## Passos para Criação
 
+0. Acesse o Workspace Databricks: https://dbc-3240b5ad-6863.cloud.databricks.com/
 1. Clique em "Workspace" no menu lateral
 2. Clique no botão "Create"
 3. Selecione "Git Folder"
