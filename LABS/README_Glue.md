@@ -12,7 +12,7 @@ Este guia demonstra como utilizar a funcionalidade de federação de catálogo d
 ## Roteiro de Execução
 
 ### 1. Federação de Catálogo AWS Glue
-**Notebook**: <a href="$./glue_catalog_federation">glue_catalog_federation</a>
+**Notebook**: <a href="$./Glue_catalog_federation/glue_catalog_federation">glue_catalog_federation</a>
 - Conexão com catálogo AWS Glue
 - Exploração de tabelas federadas
 - Clonagem de tabelas para o formato Delta
