@@ -1,32 +1,30 @@
-# Hands-on Labs - Databricks
+# Hands-on: Laboratórios Práticos (LABS)
 
 Bem-vindo aos Labs práticos do Databricks! Esta seção contém uma série de demonstrações customizadas para aprofundar seus conhecimentos em funcionalidades específicas da plataforma Databricks.
 
-## Roteiro de Aprendizado
+## Laboratórios Disponíveis
 
-Recomendamos explorar os labs de acordo com seus interesses e necessidades específicas:
-
-### 1. [SQL Scripting](README_SQL_Scripting.md)
+### 1. <a href="$./README_SQL_Scripting.md">SQL Scripting</a>
 - Scripts SQL avançados
 - Integração com APIs
 - Boas práticas de desenvolvimento SQL
 
-### 2. [Kafka Integration](README_Kafka.md)
+### 2. <a href="$./README_Kafka.md">Kafka Integration</a>
 - Integração com Apache Kafka
 - Streaming estruturado
 - Implementações em SQL e PySpark
 
-### 3. [Row Level Security e Column Masking](README_RLS_CM.md)
+### 3. <a href="$./README_RLS_CM.md">Row Level Security e Column Masking</a>
 - Segurança em nível de linha
 - Mascaramento de colunas
 - Controle de acesso granular
 
-### 4. [Glue Catalog Federation](README_Glue.md)
+### 4. <a href="$./README_Glue.md">Glue Catalog Federation</a>
 - Federação de catálogos
 - Integração com AWS Glue
 - Gerenciamento de metadados
 
-## Estrutura do Repositório
+## Estrutura dos Laboratórios
 
 ```
 LABS/
@@ -56,4 +54,6 @@ LABS/
 Em caso de dúvidas ou problemas:
 - Consulte os comentários nos notebooks
 - Verifique a documentação oficial do Databricks
-- Entre em contato com o instrutor do hands-on 
+- Entre em contato com o instrutor do hands-on
+
+Para retornar ao índice principal, clique <a href="$../README.md">aqui</a>. 

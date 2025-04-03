@@ -15,16 +15,16 @@ Este repositório contém o material para o hands-on de Engenharia de Dados no D
 
 O hands-on está dividido em duas partes principais:
 
-### 1. [Demonstrações Interativas (DBDEMOS)](DBDEMOS/README.md)
-- [Delta Lake](DBDEMOS/README_Delta_Lake.md)
-- [Auto Loader](DBDEMOS/README_Auto_Loader.md)
-- [DLT CDC](DBDEMOS/README_DLT_CDC.md)
+### 1. <a href="$./DBDEMOS/README.md">Demonstrações Interativas (DBDEMOS)</a>
+- <a href="$./DBDEMOS/README_Delta_Lake.md">Delta Lake</a>
+- <a href="$./DBDEMOS/README_Auto_Loader.md">Auto Loader</a>
+- <a href="$./DBDEMOS/README_DLT_CDC.md">DLT CDC</a>
 
-### 2. [Laboratórios Práticos (LABS)](LABS/README.md)
-- [SQL Scripting](LABS/README_SQL_Scripting.md)
-- [Kafka Integration](LABS/README_Kafka.md)
-- [Row-level Security e Column Masking](LABS/README_RLS_CM.md)
-- [Glue Catalog Federation](LABS/README_Glue.md)
+### 2. <a href="$./LABS/README.md">Laboratórios Práticos (LABS)</a>
+- <a href="$./LABS/README_SQL_Scripting.md">SQL Scripting</a>
+- <a href="$./LABS/README_Kafka.md">Kafka Integration</a>
+- <a href="$./LABS/README_RLS_CM.md">Row-level Security e Column Masking</a>
+- <a href="$./LABS/README_Glue.md">Glue Catalog Federation</a>
 
 ## Configuração Inicial
 

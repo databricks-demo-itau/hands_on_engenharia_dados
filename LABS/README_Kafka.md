@@ -41,4 +41,6 @@ Este guia apresenta diferentes abordagens para integrar o Databricks com Apache 
 - Configure corretamente as credenciais e endpoints
 - Monitore o consumo de recursos durante o streaming
 - Implemente mecanismos de recuperação de falhas
-- Limpe os recursos e streams após os exercícios 
+- Limpe os recursos e streams após os exercícios
+
+Para retornar ao índice dos laboratórios, clique <a href="$./README.md">aqui</a>. 

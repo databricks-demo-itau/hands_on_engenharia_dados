@@ -33,4 +33,6 @@ Este guia apresenta técnicas avançadas de SQL Scripting no Databricks, incluin
 - Cada notebook contém instruções detalhadas em português
 - Preste atenção aos comentários sobre boas práticas
 - Teste as queries em pequenos conjuntos de dados antes de executar em produção
-- Limpe os recursos temporários após a conclusão dos exercícios 
+- Limpe os recursos temporários após a conclusão dos exercícios
+
+Para retornar ao índice dos laboratórios, clique <a href="$./README.md">aqui</a>. 

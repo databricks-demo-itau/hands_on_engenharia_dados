@@ -37,4 +37,6 @@ Este guia apresenta técnicas avançadas de segurança no Databricks, focando em
 - Verifique o impacto das políticas na performance
 - Documente todas as políticas implementadas
 - Mantenha um registro de auditoria
-- Limpe as políticas de teste após os exercícios 
+- Limpe as políticas de teste após os exercícios
+
+Para retornar ao índice dos laboratórios, clique <a href="$./README.md">aqui</a>. 

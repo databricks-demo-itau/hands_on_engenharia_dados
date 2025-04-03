@@ -38,4 +38,6 @@ Este guia apresenta a integração entre o Databricks e o AWS Glue Catalog, perm
 - Monitore o uso e custos da AWS
 - Mantenha os metadados sincronizados
 - Implemente boas práticas de segurança
-- Limpe os recursos de teste após os exercícios 
+- Limpe os recursos de teste após os exercícios
+
+Para retornar ao índice dos laboratórios, clique <a href="$./README.md">aqui</a>. 

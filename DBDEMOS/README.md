@@ -1,35 +1,28 @@
-# Hands-on Engenharia de Dados - Databricks
+# Hands-on: Demonstrações Interativas (DBDEMOS)
 
-Bem-vindo ao hands-on de Engenharia de Dados no Databricks! Este repositório contém uma série de demonstrações práticas para aprender conceitos fundamentais de engenharia de dados usando a plataforma Databricks.
+Bem-vindo às demonstrações interativas do Databricks! Esta seção contém uma série de demos práticas usando a biblioteca dbdemos para aprender conceitos fundamentais da plataforma.
 
-## Instalação do dbdemos
+## Demonstrações Disponíveis
 
-Antes de começar, execute o notebook `001_Instala_dbdemos_engenharia.ipynb` para instalar o dbdemos e seus assets necessários.
-
-## Roteiro de Aprendizado
-
-Recomendamos seguir a ordem abaixo para melhor compreensão dos conceitos:
-
-### 1. [Delta Lake](README_Delta_Lake.md)
+### 1. <a href="$./README_Delta_Lake.md">Delta Lake</a>
 - Fundamentos do Delta Lake
 - Operações CRUD
 - Performance e otimizações
 - Change Data Feed
 - Recursos avançados
 
-### 3. [Auto Loader](README_Auto_Loader.md)
+### 2. <a href="$./README_Auto_Loader.md">Auto Loader</a>
 - Ingestão automática de dados
 - Evolução de schema
 - Monitoramento e otimização
 
-### 2. [Delta Live Tables com CDC](README_DLT_CDC.md)
+### 3. <a href="$./README_DLT_CDC.md">Delta Live Tables com CDC</a>
 - Pipelines de dados em tempo real
 - Change Data Capture
 - Monitoramento e otimização
 - Implementações em SQL e Python
 
-
-## Estrutura do Repositório
+## Estrutura das Demos
 
 ```
 DBDEMOS/
@@ -41,11 +34,10 @@ DBDEMOS/
 
 ## Observações Importantes
 
-- Todos os notebooks contêm instruções detalhadas em ingles
+- Todos os notebooks contêm instruções detalhadas em português
 - Siga a ordem recomendada dos exercícios
 - Leia atentamente os comentários e documentações
 - Limpe os recursos após concluir cada exercício
-- Em caso de dúvidas, consulte a documentação referenciada nos notebooks
 
 ## Pré-requisitos
 
@@ -59,4 +51,6 @@ DBDEMOS/
 Em caso de dúvidas ou problemas:
 - Consulte os comentários nos notebooks
 - Verifique a documentação oficial do Databricks
-- Entre em contato com o instrutor do hands-on 
+- Entre em contato com o instrutor do hands-on
+
+Para retornar ao índice principal, clique <a href="$../README.md">aqui</a>. 
