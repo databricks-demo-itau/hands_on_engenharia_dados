@@ -15,20 +15,18 @@ Este repositório contém o material para o hands-on de Engenharia de Dados no D
 
 O hands-on está dividido em duas partes principais:
 
-1. **Demonstrações Interativas usando DBDemos**
-   - Delta Lake: Fundamentos e recursos avançados
-   - Auto Loader: Ingestão de dados em tempo real
-   - DLT CDC: Change Data Capture com Delta Live Tables
+### 1. [Demonstrações Interativas (DBDEMOS)](DBDEMOS/README.md)
+- [Delta Lake](DBDEMOS/README_Delta_Lake.md)
+- [Auto Loader](DBDEMOS/README_Auto_Loader.md)
+- [DLT CDC](DBDEMOS/README_DLT_CDC.md)
 
-2. **Laboratórios Práticos**
-   - SQL Scripting: Práticas avançadas de SQL no Databricks
-   - Kafka: Integração com Apache Kafka
-   - Row-level Security e Column Masking: Segurança em nível de linha e mascaramento de coluna
-   - Glue Catalog Federation: Federação com AWS Glue Catalog
+### 2. [Laboratórios Práticos (LABS)](LABS/README.md)
+- [SQL Scripting](LABS/README_SQL_Scripting.md)
+- [Kafka Integration](LABS/README_Kafka.md)
+- [Row-level Security e Column Masking](LABS/README_RLS_CM.md)
+- [Glue Catalog Federation](LABS/README_Glue.md)
 
-## Roteiro de Execução
-
-### Parte 1: Configuração Inicial
+## Configuração Inicial
 
 1. Abra o notebook `001_Instala_dbdemos_engenharia.ipynb`
 2. Execute as células em sequência para:
@@ -36,55 +34,22 @@ O hands-on está dividido em duas partes principais:
    - Instalar a biblioteca dbdemos
    - Instalar as demos necessárias
 
-### Parte 2: Demonstrações DBDemos
+## Estrutura do Repositório
 
-#### Demo 1: Delta Lake
-- Navegue até a pasta da demo Delta Lake instalada
-- Execute os notebooks em ordem numérica
-- Principais conceitos abordados:
-  - ACID Transactions
-  - Time Travel
-  - Schema Evolution
-  - Optimization e Z-Ordering
-
-#### Demo 2: Auto Loader
-- Navegue até a pasta da demo Auto Loader
-- Execute os notebooks em ordem numérica
-- Principais conceitos abordados:
-  - Ingestão incremental de dados
-  - Schema inference e evolution
-  - Monitoramento e tratamento de erros
-
-#### Demo 3: DLT CDC
-- Navegue até a pasta da demo DLT CDC
-- Execute os notebooks em ordem numérica
-- Principais conceitos abordados:
-  - Change Data Capture
-  - Delta Live Tables
-  - Qualidade de dados
-  - Pipelines de dados em tempo real
-
-### Parte 3: Laboratórios Práticos
-
-#### Lab 1: SQL Scripting
-- Navegue até `LABS/SQL_Scripiting/`
-- Siga as instruções do notebook principal
-- Execute os exercícios propostos
-
-#### Lab 2: Kafka Integration
-- Navegue até `LABS/Kafka/`
-- Configure a conexão com o Kafka
-- Execute os exercícios de integração
-
-#### Lab 3: Row-level Security e Column Masking
-- Navegue até `LABS/Row_level_security_Column_Masking/`
-- Implemente controles de acesso em nível de linha
-- Configure mascaramento de colunas sensíveis
-
-#### Lab 4: Glue Catalog Federation
-- Navegue até `LABS/Glue_catalog_federation/`
-- Configure a federação com AWS Glue
-- Execute as queries de exemplo
+```
+.
+├── DBDEMOS/
+│   ├── delta-lake/           # Notebooks do Delta Lake
+│   ├── dlt-cdc/             # Notebooks do DLT com CDC
+│   ├── auto-loader/         # Notebooks do Auto Loader
+│   └── _resources/          # Recursos compartilhados
+│
+└── LABS/
+    ├── SQL_Scripiting/      # Labs de SQL avançado
+    ├── Kafka/               # Labs de integração Kafka
+    ├── Row_level_security_Column_Masking/  # Labs de segurança
+    └── Glue_catalog_federation/  # Labs de federação Glue
+```
 
 ## Boas Práticas
 
@@ -107,8 +72,6 @@ Ao finalizar os laboratórios:
 2. Pare todos os clusters em execução
 3. Termine todas as pipelines DLT
 
-## Próximos Passos
+Para mais detalhes sobre cada módulo, consulte os READMEs específicos nas pastas DBDEMOS e LABS.
 
-- Explore a documentação oficial do Databricks
-- Experimente outros demos disponíveis via dbdemos
-- Aplique os conceitos aprendidos em seus próprios projetos 
+
