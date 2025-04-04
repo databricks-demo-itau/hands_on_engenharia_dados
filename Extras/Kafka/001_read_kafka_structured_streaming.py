@@ -133,6 +133,11 @@ bronze_stream = (
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC create volume if not exists sst_kafka_checkpoint
+
+# COMMAND ----------
+
 # DBTITLE 1,Leitura do Kafka e Escrita na Camada Bronze
 # Escrita do stream na tabela bronze
 query = (
@@ -144,7 +149,7 @@ query = (
         f"/Volumes/dev_hands_on/{user_name}/sst_kafka_checkpoint/bronze"
     )
     .trigger(processingTime="10 seconds")
-    .table("sst_clickstream_bronze")
+    .toTable("sst_clickstream_bronze")
 )
 
 # A velocidade processamento está limitado nas configurações do Kafka, através do parametro "maxOffsetsPerTrigger": 100
