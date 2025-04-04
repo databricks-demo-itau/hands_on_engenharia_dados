@@ -41,4 +41,4 @@ Este guia demonstra como utilizar a funcionalidade de federação de catálogo d
 - Verifique as limitações de recursos com tabelas federadas
 - A integração com Genie e outros recursos avançados pode ser explorada
 
-Para retornar ao índice dos laboratórios, clique <a href="$../README.md">aqui</a>. 
+Para retornar ao índice dos laboratórios, clique <a href="$./README.md">aqui</a>. 

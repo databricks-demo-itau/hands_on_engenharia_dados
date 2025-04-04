@@ -1,4 +1,4 @@
-# Hands-on: Laboratórios Práticos (LABS)
+# Hands-on: Laboratórios Práticos (Extras)
 
 Bem-vindo aos Labs práticos do Databricks! Esta seção contém uma série de demonstrações customizadas para aprofundar seus conhecimentos em funcionalidades específicas da plataforma Databricks.
 
@@ -35,7 +35,7 @@ Bem-vindo aos Labs práticos do Databricks! Esta seção contém uma série de d
 ## Estrutura dos Laboratórios
 
 ```
-LABS/
+Extras/
 ├── SQL_Scripiting/           # Scripts SQL avançados
 ├── Kafka/                    # Integração com Kafka
 ├── Row_level_security_Column_Masking/  # Segurança e mascaramento

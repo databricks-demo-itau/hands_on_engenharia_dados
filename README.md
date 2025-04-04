@@ -38,15 +38,15 @@ Explore os conceitos fundamentais através de demos interativas:
 
 Para mais detalhes sobre as demos, consulte o <a href="$./DBDEMOS/README.md">README das Demonstrações</a>.
 
-### 2. <a href="$./LABS/README.md">Laboratórios Práticos (LABS)</a>
+### 2. <a href="$./Extras/README.md">Laboratórios Práticos (Extras)</a>
 Pratique com exercícios hands-on:
-- <a href="$./LABS/README_SQL_Scripting.md">SQL Scripting</a>
-- <a href="$./LABS/README_Kafka.md">Kafka Integration</a>
-- <a href="$./LABS/README_RLS_CM.md">Row-level Security e Column Masking</a>
-- <a href="$./LABS/README_Glue.md">Glue Catalog Federation</a>
-- <a href="$./LABS/README_CICD.md">DABS + CICD + Unit Test + Databricks Connect + Github Actions</a>
+- <a href="$./Extras/README_SQL_Scripting.md">SQL Scripting</a>
+- <a href="$./Extras/README_Kafka.md">Kafka Integration</a>
+- <a href="$./Extras/README_RLS_CM.md">Row-level Security e Column Masking</a>
+- <a href="$./Extras/README_Glue.md">Glue Catalog Federation</a>
+- <a href="$./Extras/README_CICD.md">DABS + CICD + Unit Test + Databricks Connect + Github Actions</a>
 
-Para mais detalhes sobre os laboratórios, consulte o <a href="$./LABS/README.md">README dos Laboratórios</a>.
+Para mais detalhes sobre os laboratórios, consulte o <a href="$./Extras/README.md">README dos Laboratórios</a>.
 
 ## Suporte
 
@@ -62,6 +62,6 @@ Ao finalizar os laboratórios:
 2. Pare todos os clusters em execução
 3. Termine todas as pipelines DLT
 
-Para mais detalhes sobre cada módulo, consulte os READMEs específicos nas pastas DBDEMOS e LABS.
+Para mais detalhes sobre cada módulo, consulte os READMEs específicos nas pastas DBDEMOS e Extras.
 
 
