@@ -1,16 +1,15 @@
 # Databricks notebook source
-
 # MAGIC %md
 # MAGIC # Geração de Dados de Exemplo para Volume
-# MAGIC 
+# MAGIC
 # MAGIC Este notebook é responsável por gerar dados sintéticos de clientes e transações 
 # MAGIC para serem salvos em um Volume do Unity Catalog.
-# MAGIC 
+# MAGIC
 # MAGIC ## Objetivo
 # MAGIC - Gerar dados realistas de clientes com informações pessoais
 # MAGIC - Gerar dados de transações associadas a estes clientes
 # MAGIC - Salvar os dados no formato JSON em um Volume específico do usuário
-
+# MAGIC
 
 # COMMAND ----------
 
@@ -25,6 +24,15 @@ user_name = (
 # Define o caminho do volume onde os dados serão salvos
 volume_path = f"/Volumes/dev_hands_on/{user_name}/raw_data"
 print(volume_path)
+
+# COMMAND ----------
+
+try:
+    for file_info in dbutils.fs.ls(volume_path):
+        if file_info.isDir():
+            dbutils.fs.rm(file_info.path, True)
+except:
+    spark.sql(f"create volume if not exists dev_hands_on.{user_name}.raw_data")
 
 # COMMAND ----------
 
@@ -46,9 +54,6 @@ print(volume_path)
 # COMMAND ----------
 
 try:
-    # Verifica se os diretórios de destino existem
-    dbutils.fs.ls(volume_path+"/transactions")
-    dbutils.fs.ls(volume_path+"/customers")
 
     # Importação das bibliotecas necessárias
     from pyspark.sql import functions as F
