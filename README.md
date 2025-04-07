@@ -6,25 +6,19 @@ Este repositório contém o material para o hands-on de Engenharia de Dados no D
 
 - Acesso a um workspace Databricks
 - Permissões para:
-  - Criar clusters
   - Criar pipelines DLT
   - Criar dashboards e queries no DBSQL
   - Acesso ao Unity Catalog
   - Acesso a catálogos externos (AWS Glue)
-
-## Configuração Inicial
-
-
-### Eu estou acessando esse documento pelo GITHUB:
-1. [Passo a passo de como criar Git Folder no Databricks](./Guias_UI/git_folder.md).
+  - Criar clusters
 
 ### Após clonar, siga pelo DATABRICKS:
-2. <a href="$./Guias_UI/cluster.md">Criar um Cluster</a> para executar os notebooks
-3. Abra o notebook <a href="$./DBDEMOS/001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
-4. Execute as células em sequência para:
+1. Abra o notebook <a href="$./DBDEMOS/001_Instala_dbdemos_engenharia">001_Instala_dbdemos_engenharia</a>
+2. Execute as células em sequência para:
    - Configurar seu nome de usuário
    - Instalar a biblioteca dbdemos
    - Instalar as demos necessárias
+3. <a href="$./Guias_UI/cluster.md">Criar um Cluster</a> para executar os notebooks
 
 ## Estrutura do Hands-on
 
