@@ -1,9 +1,13 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Demonstração de Leitura de Dados do Kafka com PySpark
+# MAGIC # Demonstração de Leitura de Dados do Kafka com DLT + PySpark
 # MAGIC
 # MAGIC Este notebook demonstra como implementar a leitura de dados do Apache Kafka 
 # MAGIC no Databricks usando PySpark, utilizando a arquitetura Medallion.
+# MAGIC
+# MAGIC
+# MAGIC * Esse notebook já está ponto, para rodar ou após realizar alguma atualização, é necessario criar uma DLT Pipeline e associar ao notebook.
+# MAGIC *  Você pode conferir como fazer isso:  <a href="$../../Guias_UI/criar_dlt_kafka.md">aqui</a>
 # MAGIC
 # MAGIC ## Documentação Oficial
 # MAGIC - [Databricks Structured Streaming with Kafka](

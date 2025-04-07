@@ -7,6 +7,8 @@
 
 ## Roteiro de Execução
 
+### Será necessario criar uma Pipeline DLT nas etapas 1 e 2, esse guia pode ser encontrado em: <a href="$./Kafka/001_read_kafka">001_read_kafka</a>
+
 ### 1. Leitura de Dados do Kafka com SQL
 **Notebook**: <a href="$./Kafka/001_read_kafka">001_read_kafka</a>
 - Configuração de conexão com Kafka

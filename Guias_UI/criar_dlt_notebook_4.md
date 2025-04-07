@@ -19,5 +19,3 @@ _Users/{seu_usuario}/hands_on_engenharia_dados/DBDEMOS/dlt-cdc/04-Retail_DLT_CDC
 ## Demonstração Visual
 
 ![Processo de criação de Git Folder no Databricks](images/criar_dlt_notebook_4.png)
-
-*Nota: Siga os números indicados na imagem para realizar o processo de criação do Git Folder corretamente.* 

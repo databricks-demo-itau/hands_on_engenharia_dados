@@ -8,6 +8,7 @@
 # MAGIC ## Requisitos de Cluster
 # MAGIC - Este notebook deve ser executado em um cluster All-Purpose ou Job Cluster
 # MAGIC - O cluster deve ter o Instance Profile `KafkaReadWriteInstanceProfile` configurado para autenticação com o Kafka
+# MAGIC   * Você pode conferir como criar um cluster  <a href="$../../Guias_UI/cluster.md">aqui</a> (Não se esqueça de associar o Instance Profiler do Kafka)
 # MAGIC
 # MAGIC ## Documentação Oficial
 # MAGIC - [Databricks Structured Streaming with Kafka](
