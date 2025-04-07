@@ -37,6 +37,7 @@ Este guia apresenta uma demonstração prática de como implementar pipelines de
 - Integração com outras ferramentas
 - Casos de uso avançados
 - Melhores práticas de produção
+- <a href="$../Guias_UI/criar_dlt_notebook_4.md">Veja aqui como criar um DLT e associar a este notebook</a>
 
 ## Recursos Adicionais
 - Documentação oficial do DLT
